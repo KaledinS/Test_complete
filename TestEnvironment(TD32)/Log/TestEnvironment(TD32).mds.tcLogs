@@ -20,7 +20,35 @@
 <Nodes version="1">
 	<Node name="root">
 		<Node name="folders"/>
-		<Node name="logs"/>
+		<Node name="logs">
+			<Node name="log idx=0000">
+				<Prp name="caption" type="S" value=""/>
+				<Prp name="datetime" type="D" value="43636.8480966204"/>
+				<Prp name="description" type="S" value=""/>
+				<Prp name="key" type="S" value="{601D2DCF-6131-45DF-A463-7DF09539B2B0}"/>
+				<Prp name="nameofroot" type="S" value="Script Test Log [Test1_Form_edit\Test]"/>
+				<Prp name="relpath" type="S" value="20_06_2019_20_21_15_548\Description.tcLog"/>
+				<Prp name="status" type="I" value="0"/>
+			</Node>
+			<Node name="log idx=0001">
+				<Prp name="caption" type="S" value=""/>
+				<Prp name="datetime" type="D" value="43636.8484209375"/>
+				<Prp name="description" type="S" value=""/>
+				<Prp name="key" type="S" value="{8B1B914C-1CDC-4DE7-8F03-505B9F3F4811}"/>
+				<Prp name="nameofroot" type="S" value="Script Test Log [Test2_Form_treeList\Test]"/>
+				<Prp name="relpath" type="S" value="20_06_2019_20_21_43_569\Description.tcLog"/>
+				<Prp name="status" type="I" value="0"/>
+			</Node>
+			<Node name="log idx=0002">
+				<Prp name="caption" type="S" value=""/>
+				<Prp name="datetime" type="D" value="43636.848620544"/>
+				<Prp name="description" type="S" value=""/>
+				<Prp name="key" type="S" value="{BB66624A-DD0A-4DD2-804D-2E0815418166}"/>
+				<Prp name="nameofroot" type="S" value="Script Test Log [Test3_Form_pivotGrid\Test]"/>
+				<Prp name="relpath" type="S" value="20_06_2019_20_22_00_815\Description.tcLog"/>
+				<Prp name="status" type="I" value="0"/>
+			</Node>
+		</Node>
 		<Prp name="signature" type="S" value="{681DCC69-A39F-4C4D-8E7D-B2D9362FAF4F}"/>
 		<Prp name="version" type="S" value="11.0"/>
 	</Node>

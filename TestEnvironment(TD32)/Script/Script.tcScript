@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
 	<children>
-		<child name="Unit1" key="{85534437-E122-4B7A-8AF9-6FD5BC86BB99}" path="Unit1.sd" />
+		<child name="Test1_Form_edit" key="{85534437-E122-4B7A-8AF9-6FD5BC86BB99}" path="Test1_Form_edit.sd" />
+		<child name="Test2_Form_treeList" key="{814575AB-6BA5-4D9C-8946-B0893E9EF7E7}" path="Test2_Form_treeList.sd" />
+		<child name="Test3_Form_pivotGrid" key="{1428D399-4138-4BD8-94F9-BF95BAC50990}" path="Test3_Form_pivotGrid.sd" />
 	</children>
 </Root>
