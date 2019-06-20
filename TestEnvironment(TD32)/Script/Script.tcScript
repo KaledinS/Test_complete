@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="Test_1_Form_Editor" key="{1E74F450-D322-47B4-8088-50A1300F95A4}" path="Test_1_Form_Editor.sd" />
+		<child name="Test_2_Form_TreeList" key="{A0AF9CAB-DC35-4E5B-AA0C-09270D453FE8}" path="Test_2_Form_TreeList.sd" />
+		<child name="Test_3_Form_PivotGrid" key="{DBD485E3-731D-490D-988C-6E4FEA6A33AB}" path="Test_3_Form_PivotGrid.sd" />
+	</children>
+</Root>

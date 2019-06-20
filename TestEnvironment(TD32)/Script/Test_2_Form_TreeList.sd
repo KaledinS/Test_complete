@@ -1,0 +1,30 @@
+﻿procedure Test();
+var TFMain : OleVariant;
+var FMain : OleVariant;
+var FTreeList : OleVariant;
+var tlTest : OleVariant;
+
+begin
+TestedApps.TestEnvironment_TD32.Run();
+  TFMain := Sys.Process('TestEnvironment(TD32)');
+  FMain := TFMain.VCLObject('FMain');
+  
+  FMain.Maximize;
+
+  OCR.Recognize(FMain.VCLObject('dxRibbon')).BlockByText('TreeList').Click;
+  FTreeList := FMain.VCLObject('FTreeList');
+  tlTest := FTreeList.VCLObject('tlTest');
+  
+  tlTest.wChildView[1].Collapse(2);
+  tlTest.Collapse(1);
+  
+  tlTest.wChildView[3].wChildView[2].ClickCell(1, 'name');
+  FTreeList.Window('TcxCustomInnerTextEdit', '', 1).Keys('test');
+  
+  tlTest.Expand(1);
+  tlTest.wChildView[1].Expand(2);
+  tlTest.wChildView[1].wChildView[2].ClickCell(0, 'name');
+  FTreeList.Window('TcxCustomInnerTextEdit', '', 1).Clear;
+  
+  FTreeList.Close();
+end;

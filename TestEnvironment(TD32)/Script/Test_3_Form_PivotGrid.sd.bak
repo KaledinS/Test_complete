@@ -1,0 +1,88 @@
+﻿procedure Test();
+var TFMain : OleVariant;
+var FMain : OleVariant;
+var FPivotGrid : OleVariant;
+var pgTest : OleVariant;
+begin
+  TestedApps.TestEnvironment_TD32.Run();
+  
+  TFMain := Sys.Process('TestEnvironment(TD32)');
+  FMain := TFMain.VCLObject('FMain');
+  
+  FMain.Maximize;
+ 
+  OCR.Recognize(FMain.VCLObject('dxRibbon')).BlockByText('PivotGrid').Click;
+  FPivotGrid := FMain.VCLObject('FPivotGrid');
+  pgTest := FPivotGrid.VCLObject('pgTest');
+  
+  FPivotGrid.ClickR(50, 17);
+  OCR.Recognize(TFMain.Window('#32768', '', 1)).BlockByText('Field List').Click;
+
+  FPivotGrid.Drag(514, 11, 1284, 804);
+  FPivotGrid.Drag(601, 16, 1203, 799);
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Close;
+  
+  FPivotGrid.Drag(278, 11, -248, 115);
+  FPivotGrid.Drag(472, 16, -281, 110);
+  FPivotGrid.Drag(481, 16, -384, 0);
+  FPivotGrid.Drag(501, 13, -378, 4);
+  
+  FPivotGrid.ClickR(180, 17);
+  OCR.Recognize(TFMain.Window('#32768', '', 1)).BlockByText('Field List').Click;
+  
+  OCR.Recognize(TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1)).BlockByText('Square_avg').Click;
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Window('TcxComboBox', '', 1).ClickItem('Data Area');
+ 
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Window('TcxButton', 'Add To', 1).ClickButton;
+  OCR.Recognize(TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1)).BlockByText('ShopId').Click;
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Window('TcxComboBox', '', 1).ClickItem('Row Area');
+
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Window('TcxButton', 'Add To', 1).ClickButton;
+
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Close;
+  FPivotGrid.Click(55, 91);
+  TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Click(7,5);
+  TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Click(7,50);
+  FPivotGrid.Click(10, 114);
+  FPivotGrid.Click(27, 136);
+  FPivotGrid.Click(560, 40);
+  FPivotGrid.Click(882, 110);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('300');
+  FPivotGrid.Click(1015, 149);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('400');
+  FPivotGrid.Click(1102, 170);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('600');
+  
+ // FPivotGrid.Close();
+end;
+
+function Test1();
+var TFMain : OleVariant;
+var FMain : OleVariant;
+var FPivotGrid : OleVariant;
+var pgTest : OleVariant;
+begin
+  TestedApps.TestEnvironment_TD32.Run();
+  
+  TFMain := Sys.Process('TestEnvironment(TD32)');
+  FMain := TFMain.VCLObject('FMain');
+  //pgTest := FPivotGrid.VCLObject('pgTest');
+  //FMain.Maximize;
+ 
+  //OCR.Recognize(FMain.VCLObject('dxRibbon')).BlockByText('PivotGrid').Click;
+  FPivotGrid := FMain.VCLObject('FPivotGrid');
+  pgTest := FPivotGrid.VCLObject('pgTest');
+  FPivotGrid.Click(882, 110);
+  FPivotGrid.ClickCell('Оренбург', 7);
+  //TFMain.Window('TcxCustomInnerTextEdit', '', 1).
+  //TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).FindAll('WndClass','TcxCustomInnerTextEdit');
+  //var cellPic = TFMain.FindAll('WndClass','TcxSpinEdit');
+ //Log.Picture(TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1)._NewEnum);
+ //Log.Message(TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1)._NewEnum)
+ 
+ // FPivotGrid.FindChildEx()
+  //Sys.Desktop.Picture(TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).FindAll());
+ // TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Click();
+  //Log.Picture(TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Index(1));
+  //TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1)._NewEnum;
+end;
