@@ -1,0 +1,63 @@
+﻿procedure Test();
+var TFMain, FMain, FEdits : OleVariant;
+begin
+  TestedApps.TestEnvironment_TD32.Run();
+  
+  TFMain := Sys.Process('TestEnvironment(TD32)');
+  FMain := TFMain.VCLObject('FMain');
+  
+  FMain.Maximize;
+ 
+  OCR.Recognize(FMain.VCLObject('dxRibbon')).BlockByText('Форма редакторов').Click;
+  
+  FEdits := FMain.VCLObject('FEdits');
+  //Memo
+  FEdits.Window('TcxCustomInnerMemo', '', 1).Keys('text[Enter]text[Enter]text');
+  FEdits.Window('TcxButton', 'Значение ->', 7).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 7), 'WndCaption', cmpEqual, 'text'#13#10'text'#13#10'text');
+  //TextEdit
+  FEdits.VCLObject('edTestEdit').Keys('text');
+  FEdits.Window('TcxButton', 'Значение ->', 1).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 1), 'WndCaption', cmpEqual, 'text');
+  //CheckBox
+  FEdits.Window('TcxButton', '', 14).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 14), 'WndCaption', cmpEqual, 'False');
+  
+  FEdits.VCLObject('cbTestEdit').Click;
+  FEdits.Window('TcxButton', '', 14).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 14), 'WndCaption', cmpEqual, 'True');
+  //CurrencyEdit
+  FEdits.Window('TcxCustomInnerTextEdit', '', 4).Keys('12');
+  FEdits.Window('TcxButton', 'Значение ->', 11).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 11), 'WndCaption', cmpEqual, '12');
+  //CheckComboBox
+  FEdits.VCLObject('ccbTestEdit').Click;
+  OCR.Recognize(TFMain.Window('TcxCheckComboBoxPopupWindow', '', 1).Window('TcxCustomCheckComboBoxListBox', '', 1)).BlockByText('Name1').Click;///
+  FEdits.Window('TcxButton', 'Значение ->', 13).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 13), 'WndCaption', cmpEqual, '1');
+  //SpinEdit
+  FEdits.Window('TcxCustomInnerTextEdit', '', 2).Keys('50');
+  FEdits.VCLObject('seTestEdit').Click(287, 18);
+  FEdits.Window('TcxButton', 'Значение ->', 2).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 2), 'WndCaption', cmpEqual, '49');
+  //DateEdit
+  FEdits.VCLObject('deTestEdit').Click(282, 12);
+  OCR.Recognize(TFMain.Window('TcxDateEditPopupWindow', '', 1).Window('TcxPopupCalendar', '', 1)).BlockByText('10').Click;
+  FEdits.Window('TcxButton', 'Значение ->', 10).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 10), 'WndCaption', cmpEqual, '10.06.2019');
+  //ProgressEdit
+  FEdits.VCLObject('peTestProgress').Click(50,10);
+  FEdits.VCLObject('peTestUp').Click;
+  FEdits.Window('TcxButton', 'Значение ->', 4).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 4), 'WndCaption', cmpEqual, '22');
+  //LookUpEdit 
+  FEdits.VCLObject('lueTestEdit').Click(270,10);
+  OCR.Recognize(TFMain.Window('TcxComboBoxPopupWindow', '', 1).Window('TcxCustomLookupDBGrid', '', 1)).BlockByText('Name1').Click;
+  FEdits.VCLObject('lueTestEdit').Click(287,10);
+  FEdits.VCLObject('lueTestEdit').Click(270,10);
+  OCR.Recognize(TFMain.Window('TcxComboBoxPopupWindow', '', 1).Window('TcxCustomLookupDBGrid', '', 1)).BlockByText('Name2').Click;
+  FEdits.Window('TcxButton', 'Значение ->', 9).Click;
+  aqObject.CheckProperty(FEdits.Window('TcxLabel','', 9), 'WndCaption', cmpEqual, '2');
+  
+  FEdits.Close();
+end;

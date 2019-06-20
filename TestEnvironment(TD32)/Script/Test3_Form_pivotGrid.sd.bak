@@ -1,0 +1,71 @@
+﻿procedure Test();
+var TFMain, FMain, FPivotGrid, TcxPivotGridCustomizationForm : OleVariant;
+begin
+  TestedApps.TestEnvironment_TD32.Run();
+  
+  TFMain := Sys.Process('TestEnvironment(TD32)');
+  FMain := TFMain.VCLObject('FMain');
+  
+  FMain.Maximize;
+ 
+  OCR.Recognize(FMain.VCLObject('dxRibbon')).BlockByText('PivotGrid').Click;
+  FPivotGrid := FMain.VCLObject('FPivotGrid');
+  
+  //выбрать пункт 'Show Field List'
+  FPivotGrid.ClickR(50, 17);
+  OCR.Recognize(TFMain.Window('#32768', '', 1)).BlockByText('Field List').Click;
+  
+  //Перенести в окошко поля Square_avg и ShopID
+  FPivotGrid.Drag(514, 11, 1284, 804);
+  FPivotGrid.Drag(601, 16, 1203, 799);
+  TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1).Close;
+  
+  //Перенести в секцию Row Fields поля City и Shop
+  FPivotGrid.Drag(278, 11, -248, 115);
+  FPivotGrid.Drag(472, 16, -281, 110);
+  
+  //Перенести в поля 'Data Fields' поля Income_Sum, Value_custom
+  FPivotGrid.Drag(481, 16, -384, 0);
+  FPivotGrid.Drag(501, 13, -378, 4);
+  
+  //выбрать пункт 'Show Field List'
+  FPivotGrid.ClickR(180, 17);
+  OCR.Recognize(TFMain.Window('#32768', '', 1)).BlockByText('Field List').Click;
+  
+  TcxPivotGridCustomizationForm := TFMain.Window('TcxPivotGridCustomizationForm', 'PivotGrid Field List', 1);
+  
+  //Выделить поле Square_avg В списке выбрать значение 'Data Area' Нажать на кнопку 'Add To'
+  OCR.Recognize(TcxPivotGridCustomizationForm.BlockByText('Square_avg').Click;
+  TcxPivotGridCustomizationForm.Window('TcxComboBox', '', 1).ClickItem('Data Area');
+  TcxPivotGridCustomizationForm.Window('TcxButton', 'Add To', 1).ClickButton;
+  
+  // Выделить поле ShopID В списке выбрать значение 'Row Area' Нажать на кнопку 'Add To'
+  OCR.Recognize(TcxPivotGridCustomizationForm).BlockByText('ShopId').Click;
+  TcxPivotGridCustomizationForm.Window('TcxComboBox', '', 1).ClickItem('Row Area');
+  TcxPivotGridCustomizationForm.Window('TcxButton', 'Add To', 1).ClickButton;
+  TcxPivotGridCustomizationForm.Close;
+  
+  //В поле City нажать на иконку фильтра Снять галку с поля (Show All) Выбрать город Оренбург
+  FPivotGrid.Click(55, 91);
+  TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Click(7,5);
+  TFMain.Window('TcxPivotGridFilterPopupWindow', '', 1).Click(7,50);
+  FPivotGrid.Click(10, 114);
+  
+  //В секции Row Fields развернуть ветку Оренбург\Магазин 1-3\6 В секции Column Fields развернуть ветку Россия
+  FPivotGrid.Click(27, 136);
+  FPivotGrid.Click(560, 40);
+  
+  //Income_sum ввести значение 300
+  FPivotGrid.Click(882, 110);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('300');
+  
+  //Value_custom ввести значение 600
+  FPivotGrid.Click(1015, 149);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('400');
+  
+  //Square_avg ввести значение 400
+  FPivotGrid.Click(1102, 170);
+  FPivotGrid.Window('TcxCustomInnerTextEdit', '', 1).Keys('600');
+  
+  FPivotGrid.Close();
+end;
